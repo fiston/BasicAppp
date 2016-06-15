@@ -1,4 +1,0 @@
-Referral Hospital,Referral Hospital
-District Hospital,District Hospital
-Private Hospital,Private Hospital
-Health Center,Health Center
