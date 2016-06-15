@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel='shortcut icon' href="../static/images/favicon_rdb.png" th:href="@{/images/favicon_rdb.png}"
+          type="image/x-icon"/>
+    <!--CSS and JS-->
+
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.6/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.6/css/bootstrap.min.css}"
+          rel="stylesheet" media="all"/>
+
+    <link href="../static/css/bootstrap-submenu.min.css"
+          th:href="@{/css/bootstrap-submenu.min.css}"
+          rel="stylesheet" media="all"/>
+
+
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.6/css/bootstrap-theme.css"
+          th:href="@{/webjars/bootstrap/3.3.6/css/bootstrap-theme.css}"
+          rel="stylesheet" media="all"/>
+    <link href="../static/css/jquery-ui.css" th:href="@{/css/jquery-ui.css}" rel="stylesheet" media="all"/>
+
+    <link href="../static/css/jquery.dataTables.min.css" th:href="@{/css/jquery.dataTables.min.css}" rel="stylesheet"
+          media="all"/>
+    <link href="../static/css/buttons.dataTables.min.css" th:href="@{/css/buttons.dataTables.min.css}" rel="stylesheet"
+          media="all"/>
+    <link href="../static/css/jquery.timepicker.css" th:href="@{/css/jquery.timepicker.css}" rel="stylesheet"
+          media="all"/>
+
+    <!-- JS -->
+    <script type="text/javascript" src="../static/js/jquery.min.js"
+            th:src="@{/js/jquery.min.js}"></script>
+    <script type="text/javascript" src="../static/js/jquery.dataTables.min.js"
+            th:src="@{/js/jquery.dataTables.min.js}"></script>
+    <!--DataTables export-->
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.datatables.net/t/dt/jq-2.2.0,jszip-2.5.0,pdfmake-0.1.18,dt-1.10.11,b-1.1.2,b-colvis-1.1.2,b-flash-1.1.2,b-html5-1.1.2,b-print-1.1.2/datatables.min.css"/>
+
+    <script type="text/javascript"
+            src="https://cdn.datatables.net/t/dt/jq-2.2.0,jszip-2.5.0,pdfmake-0.1.18,dt-1.10.11,b-1.1.2,b-colvis-1.1.2,b-flash-1.1.2,b-html5-1.1.2,b-print-1.1.2/datatables.min.js"></script>
+    <!--End export-->
+
+
+    <script type="text/javascript" src="../static/js/dataTables.bootstrap.js"
+            th:src="@{/js/dataTables.bootstrap.js}"></script>
+    <script type="text/javascript" src="../static/js/bootstrap.min.js"
+            th:src="@{/js/bootstrap.min.js}"></script>
+
+
+    <script type="text/javascript" src="../static/js/bootstrap-submenu.min.js"
+            th:src="@{/js/bootstrap-submenu.min.js}"></script>
+    <script type="text/javascript" src="../static/js/bootstrap-checkbox.js"
+            th:src="@{/js/bootstrap-checkbox.js}"></script>
+
+
+    <script type="text/javascript" src="../static/js/jquery-ui.js" th:src="@{/js/jquery-ui.js}"></script>
+    <script type="text/javascript" src="../static/js/jquery.timepicker.js"
+            th:src="@{/js/jquery.timepicker.js}"></script>
+
+
+    <style>
+        body,
+        h1, h2, h3, h4, h5, h6,
+        input,
+        button,
+        select,
+        textarea,
+        .navbar-search .search-query {
+            font-family: Georgia, "Times New Roman", Times, serif;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top" style="display: block;">
+    <div class="container" style="width: 100em;">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target=".navHeaderCollapse" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/home"><img src="../static/images/kvcs_banner.png"
+                                                      th:src="@{/images/kvcs_banner.png}" alt="KVCS"
+                                                      style="height: 130%; margin-right: 10px;margin-top: 1px;"/></a>
+        </div>
+        <div class="collapse navbar-collapse navHeaderCollapse">
+            <div id="urls" name="urls" sec:authorize="isAuthenticated()">
+                <ul class="nav navbar-nav navbar-left" id="menu-navbar-collapse">
+
+                    <!--Companies-->
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle"><span
+                                class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;<strong>DEFAULTERS</strong><b
+                                class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a th:href="@{/defaulters}"><span class="glyphicon glyphicon-plus"
+                                                                  aria-hidden="true"></span>&nbsp;&nbsp;<strong>Register
+                                Defaulters</strong></a></li>
+                            <li class="divider"></li>
+                            <li><a th:href="@{/defaulters/find}"><span class="glyphicon glyphicon-search"
+                                                                       aria-hidden="true"></span>&nbsp;&nbsp;<strong>Search
+                                Defaulters</strong></a></li>
+                            <li class="divider"></li>
+                            <li><a th:href="@{/defaulters/list}"><span class="glyphicon glyphicon-list"
+                                                                       aria-hidden="true"></span>&nbsp;&nbsp;<strong>List</strong></a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--PRE-PAYMENT-->
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle"><span
+                                class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;<strong>PRE-PAYMENT</strong><b
+                                class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a th:href="@{/prePayment}"><span class="glyphicon glyphicon-plus"
+                                                                  aria-hidden="true"></span>&nbsp;&nbsp;<strong>Register
+                                PrePayment</strong></a></li>
+                            <li class="divider"></li>
+                            <li><a th:href="@{/prePayment/find}"><span class="glyphicon glyphicon-search"
+                                                                       aria-hidden="true"></span>&nbsp;&nbsp;<strong>Search
+                                PrePayment</strong></a></li>
+                            <li class="divider"></li>
+                            <li><a th:href="@{/prePayment/list}"><span class="glyphicon glyphicon-list"
+                                                                       aria-hidden="true"></span>&nbsp;&nbsp;<strong>List</strong></a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!--Reports-->
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle"><span
+                                class="glyphicon glyphicon-print" aria-hidden="true"></span>&nbsp;&nbsp;<strong>REPORTING</strong><b
+                                class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a th:href="@{/smsreceived/list}"><span
+                                    class="glyphicon glyphicon-question-sign"
+                                    aria-hidden="true"></span>&nbsp;&nbsp;<strong>SMS Received</strong></a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a th:href="@{/postpayment}"><span
+                                        class="glyphicon glyphicon-thumbs-up"
+                                        aria-hidden="true"></span>&nbsp;&nbsp;<strong>Post Payment</strong></a>
+
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a th:href="@{/dataEntry}"><span
+                                        class="glyphicon glyphicon-thumbs-up"
+                                        aria-hidden="true"></span>&nbsp;&nbsp;<strong>Data Entry</strong></a>
+
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!--Users-->
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle"><span
+                                class="glyphicon glyphicon-user"
+                                aria-hidden="true"></span>&nbsp;&nbsp;<strong>USERS</strong><b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a th:href="@{/user/create}"><span class="glyphicon glyphicon-plus"
+                                                                   aria-hidden="true"></span>&nbsp;&nbsp;<strong>Add
+                                User</strong></a></li>
+                            <li><a th:href="@{/users}"><span class="glyphicon glyphicon-list" aria-hidden="true"></span>&nbsp;&nbsp;<strong>List</strong></a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class=".pull-right">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown" sec:authorize="isAuthenticated()">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle"><strong><span
+                                th:text="${#authentication.name}"
+                                style="text-transform: uppercase; "></span></strong></a>
+                        <ul class="dropdown-menu" sec:authorize="isAuthenticated()">
+
+                            <li><a th:href="@{/changepassword}"><span class="glyphicon glyphicon-edit"
+                                                                      aria-hidden="true"></span>&nbsp;&nbsp;<strong>CHANGE
+                                PASSWORD</strong></a></li>
+                            <li><a th:href="@{/logout}"><strong><span class="glyphicon glyphicon-off"
+                                                                      aria-hidden="true"></span>&nbsp;&nbsp;LOGOUT&nbsp;&nbsp;<span
+                                    th:text="${#authentication.name}" style="text-transform: uppercase; "></span>
+                            </strong></a>
+                            </li>
+
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right" sec:authorize="isAnonymous()">
+                    <li><a th:href="@{/login}"><strong><span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp;&nbsp;LOGIN&nbsp;&nbsp;
+                    </strong></a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div id="wrapper">
+        <div style="height: 60px;">
+
+        </div>
+        <div style="text-align: right; width: 100%; height: auto; display: block; padding-right: 10px; margin-bottom: 20xp; font-weight: bolder;"
+             sec:authorize="isAuthenticated()">
+
+
+        </div>
+        <div id="div_body">
+            <div layout:fragment="content"></div>
+        </div>
+    </div>
+</div>
+<nav class="navbar-fixed-bottom">
+    <div class="container">
+        <div class="nav-header">
+            <p class="text-muted">
+                All Rights Reserved Kigali Veterans Cooperative Society &COPY; <span class="time" id="time"></span>
+            </p>
+        </div>
+    </div>
+</nav>
+<script th:src="@{/js/addressHie.js}"></script>
+<script>
+    // <![CDATA[
+    var today = new Date();
+    document.getElementById('time').innerHTML = today.getFullYear().toString();
+
+    $(document).ready(function () {
+
+//        ----------------------------------- Dialog modal ------------------------
+        $("#dialog").dialog({
+            autoOpen: false,
+            modal: true
+        });
+
+
+        $(".confirmLink").click(function (e) {
+            e.preventDefault();
+            var targetUrl = $(this).attr("href");
+
+            $("#dialog").dialog({
+                buttons: {
+                    "Confirm": function () {
+                        window.location.href = targetUrl;
+                    },
+                    "Cancel": function () {
+                        $(this).dialog("close");
+                    }
+                }
+            });
+
+            $("#dialog").dialog("open");
+        });
+
+        // --------------------------------------------------datepicker-------------------------------------
+        $('.date-picker').datepicker({
+            dateFormat: "dd/mm/yy",
+            timeFormat: 'hh:mm:ss',
+            changeMonth: true,
+            changeYear: true,
+            showOtherMonths: true
+
+        });
+
+        $('.time-picker').timepicker({
+            timeFormat: 'H : i ',
+            'scrollDefault': 'now',
+            interval: 1,
+            step: 1,
+        });
+//       ------------------------------------------------ DataTables--------------------------------------------
+//        $('.dataTab').dataTable({
+//            "pagingType": "full_numbers"
+//        });
+
+
+        var example = $('#example').DataTable({
+            dom: "Bfrtip",
+            buttons: [
+                "copyHtml5",
+                "excelHtml5",
+                "csvHtml5",
+                {
+                    extend: 'print',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                },
+                {
+                    extend: 'colvis'
+                }
+            ],
+            "footerCallback": function (row, data, start, end, display) {
+                var api = this.api(), data;
+
+                // Remove the formatting to get integer data for summation
+                var intVal = function (i) {
+                    return typeof i === 'string' ?
+                    i.replace(/[\$,]/g, '') * 1 :
+                            typeof i === 'number' ?
+                                    i : 0;
+                };
+
+                // Total over all pages
+                total = api
+                        .column(4)
+                        .data()
+                        .reduce(function (a, b) {
+                            return intVal(a) + intVal(b);
+                        }, 0);
+
+                // Total over this page
+                pageTotal = api
+                        .column(4, {page: 'current'})
+                        .data()
+                        .reduce(function (a, b) {
+                            return intVal(a) + intVal(b);
+                        }, 0);
+
+                // Update footer
+                $(api.column(4).footer()).html(
+                        'Frw ' + pageTotal + ' ( Frw ' + total + ' total)'
+                );
+            }
+
+        });
+
+//        var example = $('#example').DataTable({
+//            "pagingType": "full_numbers",
+//            "processing": true,
+//            "serverSide": true,
+//            "ajax": "/defaulters/getList",
+////                "dataSrc":"data",
+////                "type": "GET"
+////                "deferLoading": 57,
+//            "columns": [
+//                {"data": "uuid"},
+//                {"data": "ticketNo"},
+//                {"data": "plaque"},
+//                {"data": "carBrand"},
+//                {"data": "location"},
+//                {"data": "dateTimeStart"},
+//                {"data": "timeStart"},
+//                {"data": "amount"},
+//                {"data": "savedDate"},
+//                {"data": "savedBy"},
+//                {"data": "paid"}
+//
+//            ]
+////            }
+//
+//        });
+
+
+        example.columns().eq(0).each(function (colIdx) {
+            $('input', example.column(colIdx).header()).on('keyup change', function () {
+                example
+                        .column(colIdx)
+                        .search(this.value)
+                        .draw();
+            });
+
+            $('input', example.column(colIdx).header()).on('click', function (e) {
+                e.stopPropagation();
+            });
+        });
+//        example.columns( '.amount' ).every( function () {
+//            var sum = this
+//                    .data()
+//                    .reduce( function (a,b) {
+//                        return a + b;
+//                    } );
+//
+//            $( this.footer() ).html( 'Sum: '+sum );
+//        } );
+//        $('#example thead th').each(function () {
+//            var title = $('#example tfoot th').eq($(this).index()).text();
+//
+//            if (title !== "#")
+//                $(this).html('<input type="text" placeholder="Search ' + title + '" />');
+//        });
+//        $('#example tfoot th').each(function () {
+//            var title = $(this).text();
+//            $(this).html('<input type="text" placeholder="Search ' + title + '" />');
+//        });
+
+//        var r = $('#example tfoot tr');
+//        r.find('th').each(function () {
+//            $(this).css('padding', 8);
+//        });
+//        $('#example thead').append(r);
+
+        // --------------------------checkbox--------------------------------------
+        $(':checkbox').checkboxpicker();
+//        $('.date-picker').attr("placeholder", "dd/mm/yy");
+//        $(".date-picker").attr("readonly", true);
+
+        // ------------------------hrs and min------------------------------------
+        for (var i = 0; i < 24; i++) {
+            var s = i.toString();
+            if (s.length == 1) {
+                s = "0" + s;
+            }
+            document.getElementById("starthrs").innerHTML += ("<option value='" + i + "'>" + s + "  </option>");
+        }
+        for (var i = 0; i < 60; i++) {
+            var s = i.toString();
+            if (s.length == 1) {
+                s = "0" + s;
+            }
+            document.getElementById("startmins").innerHTML += ("<option value='" + i + "'>" + s + "  </option>");
+        }
+//--------------------------JSON to table----------------------
+
+
+
+
+    });
+    var url="http://localhost:8090/defaulters/raa001a";
+    $.getJSON(url , function(data) {
+        var tbl_body = document.createElement("tbody");
+        var odd_even = false;
+        alert(data.defaultersList);
+        $.each(data.defaultersList, function() {
+
+            var tbl_row = tbl_body.insertRow();
+            tbl_row.className = odd_even ? "odd" : "even";
+            $.each(this, function(k , v) {
+                var cell = tbl_row.insertCell();
+                cell.appendChild(document.createTextNode(v.toString()));
+            })
+            odd_even = !odd_even;
+        })
+        alert(tbl_body);
+        $("#basic-table").append(tbl_body);
+    });
+
+    // ]]>
+</script>
+<script>
+
+
+    $("#form-page").submit(function () {
+        var startTime = $('#timeStart').val();
+        alert(startTime);
+        $('#timeStart').val(startTime);
+//            $('#form-page').submit();
+
+    });
+</script>
+<!--JSPDF-->
+
+
+
+
+</body>
+</html>

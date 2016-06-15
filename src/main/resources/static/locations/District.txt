@@ -1,0 +1,30 @@
+0101,Kigali,Nyarugenge
+0102,Kigali,Gasabo
+0103,Kigali,Kicukiro
+0201,Southern Province,Nyanza
+0202,Southern Province,Gisagara
+0203,Southern Province,Nyaruguru
+0204,Southern Province,Huye
+0205,Southern Province,Nyamagabe
+0206,Southern Province,Ruhango
+0207,Southern Province,Muhanga
+0208,Southern Province,Kamonyi
+0301,Western Province,Karongi
+0302,Western Province,Rutsiro
+0303,Western Province,Rubavu
+0304,Western Province,Nyabihu
+0305,Western Province,Ngororero
+0306,Western Province,Rusizi
+0307,Western Province,Nyamasheke
+0401,Northern Province,Rulindo
+0402,Northern Province,Gakenke
+0403,Northern Province,Musanze
+0404,Northern Province,Burera
+0405,Northern Province,Gicumbi
+0501,Eastern Province,Rwamagana
+0502,Eastern Province,Nyagatare
+0503,Eastern Province,Gatsibo
+0504,Eastern Province,Kayonza
+0505,Eastern Province,Kirehe
+0506,Eastern Province,Ngoma
+0507,Eastern Province,Bugesera
